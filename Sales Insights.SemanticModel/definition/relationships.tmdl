@@ -1,0 +1,31 @@
+relationship AutoDetected_1d5c1d11-5894-4ada-8982-226c15c7e7c9
+	fromColumn: fact_sales.CustomerID
+	toColumn: dim_customers.CustomerID
+
+relationship AutoDetected_745bd67a-d2b8-4ec7-a1bc-ba85613f3746
+	fromColumn: fact_sales.ProductID
+	toColumn: dim_products.ProductID
+
+relationship e3284bbd-46db-9e2a-28bb-ff477700981e
+	fromColumn: fact_sales.Date
+	toColumn: dim_calendar.Date
+
+relationship 0cdba9a0-61ce-e068-2926-0dd4b177da0a
+	fromColumn: fact_sales.EmployeeID
+	toColumn: dim_employees.EmployeeID
+
+relationship 10568cc6-3822-b2c1-0be4-1e0ab335ec3f
+	fromColumn: fact_sales.StoreID
+	toColumn: dim_stores.StoreID
+
+relationship 31f1175a-e5ae-4dba-b1c6-9ac4f521a8b0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_employees.JoinDate
+	toColumn: LocalDateTable_2371134f-a299-47cf-a4d8-62bc9088ac8d.Date
+
+relationship d616305e-6f45-bd14-91e9-193c907e6653
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Products Table'.ProductName
+	toColumn: dim_products.ProductName
+

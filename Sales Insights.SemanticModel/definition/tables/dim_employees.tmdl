@@ -1,0 +1,158 @@
+table dim_employees
+	lineageTag: 8615c1ab-1188-420e-839f-7476c665b4fc
+
+	column EmployeeID
+		dataType: int64
+		formatString: 0
+		lineageTag: d92d32ca-e7ff-4b81-a328-9fa512e8bf8e
+		summarizeBy: none
+		sourceColumn: EmployeeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: 19706e7b-138a-4da7-905f-d24dd7e97d26
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: int64
+		formatString: 0
+		lineageTag: 758897bd-ad77-4bb0-8868-714f9790da02
+		summarizeBy: sum
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column JoinDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 693d5bbb-b9ab-48db-8704-e86174dde663
+		summarizeBy: none
+		sourceColumn: JoinDate
+
+		variation Variation
+			isDefault
+			relationship: 31f1175a-e5ae-4dba-b1c6-9ac4f521a8b0
+			defaultHierarchy: LocalDateTable_2371134f-a299-47cf-a4d8-62bc9088ac8d.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Salary
+		dataType: double
+		lineageTag: 7bd37b9f-f969-4e82-a840-3f0cfc86f548
+		summarizeBy: sum
+		sourceColumn: Salary
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Active
+		dataType: int64
+		formatString: 0
+		lineageTag: 4057cb94-5f0e-468b-ab37-16f9237db558
+		summarizeBy: sum
+		sourceColumn: Active
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreID
+		dataType: string
+		lineageTag: 0f87b847-fa4b-4e39-be26-11abb9027c03
+		summarizeBy: none
+		sourceColumn: StoreID
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		lineageTag: 7da50215-d3b2-46f0-9f88-3ab7861a0568
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column Role
+		dataType: string
+		lineageTag: dea7fbb3-673d-4f95-8331-25077024550d
+		summarizeBy: none
+		sourceColumn: Role
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tenure
+		dataType: double
+		lineageTag: d9b3b820-1a76-4caa-8f2f-906ae5d938b9
+		summarizeBy: sum
+		sourceColumn: Tenure
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FirstName
+		dataType: string
+		lineageTag: e7530dd3-458b-40b2-9608-30c64cf0cd45
+		summarizeBy: none
+		sourceColumn: FirstName
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastName
+		dataType: string
+		lineageTag: 30b1f7e4-8308-4bf0-90bb-13e190430b1f
+		summarizeBy: none
+		sourceColumn: LastName
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 6bd53ff4-b60a-41c0-a54b-aee505b1ea8a
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsManager
+		dataType: int64
+		formatString: 0
+		lineageTag: 190d586b-4e56-483b-afa2-fea59f2031fb
+		summarizeBy: sum
+		sourceColumn: IsManager
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_employees = m
+		mode: import
+		source =
+				let
+				    Path = Path,
+				    FileName = "dim_employees.csv",
+				    PathComplete = Path & FileName,
+				    Source = Csv.Document(File.Contents(PathComplete), [Delimiter = ",", Encoding = 1252, QuoteStyle = QuoteStyle.None]),
+				    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    ChangedType = Table.TransformColumnTypes(PromotedHeaders,{{"EmployeeID", Int64.Type}, {"Name", type text}, {"Age", Int64.Type}, {"JoinDate", type date}, {"Salary", type number}, {"StoreID", Int64.Type}, {"Email", type text}, {"Rol", type text}, {"Active", Int64.Type}, {"IsManager", Int64.Type}}),
+				    FilteredActive = Table.SelectRows(ChangedType, each [Active] = 1),
+				    AddedTenure = Table.AddColumn(FilteredActive, "Tenure", each Duration.Days(Date.From(DateTime.LocalNow()) - [JoinDate]) / 365, type number),
+				    ExtractedFirstName = Table.AddColumn(AddedTenure, "FirstName", each Text.BeforeDelimiter([Name], " "), type text),
+				    ExtractedLastName = Table.AddColumn(ExtractedFirstName, "LastName", each Text.AfterDelimiter([Name], " "), type text),
+				    RenamedColumns = Table.RenameColumns(ExtractedLastName, {{"Rol", "Role"}}),
+				    MergedStores = Table.NestedJoin(RenamedColumns, {"StoreID"}, dim_stores, {"StoreID"}, "StoreInfo", JoinKind.LeftOuter),
+				    ExpandedCity = Table.ExpandTableColumn(MergedStores, "StoreInfo", {"City"}, {"City"}),
+				    #"Sorted Rows" = Table.Sort(ExpandedCity,{{"StoreID", Order.Ascending}})
+				in
+				    #"Sorted Rows"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

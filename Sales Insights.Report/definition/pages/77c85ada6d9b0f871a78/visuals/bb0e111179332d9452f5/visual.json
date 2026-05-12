@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "bb0e111179332d9452f5",
+  "position": {
+    "x": 224,
+    "y": 105.68832344748736,
+    "z": 4500,
+    "height": 564.67664005616234,
+    "width": 992,
+    "tabOrder": 8005
+  },
+  "visualGroup": {
+    "displayName": "Plantilla 3 (tabla)",
+    "groupMode": "ScaleMode"
+  },
+  "isHidden": true
+}

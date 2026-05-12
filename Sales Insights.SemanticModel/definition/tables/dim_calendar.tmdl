@@ -1,0 +1,108 @@
+table dim_calendar
+	lineageTag: dcada42b-47c8-487f-89e8-cc3b7e896a32
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: Long Date
+		lineageTag: ed50ba54-dae8-4ddb-bdc5-fd71844954ea
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: b0ef0ff7-ca1e-4d8e-a242-0bf88c30d620
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 4674c7d9-8cfa-4b4b-aab4-e8ef134d7d07
+		summarizeBy: sum
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quarter (Text)'
+		dataType: string
+		lineageTag: 2ce40052-8497-47fd-b1a8-88b5ee252c48
+		summarizeBy: none
+		sourceColumn: Quarter (Text)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: e1870756-93fd-436c-a993-be0862888d28
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: 2f395d7f-77ba-4c4f-b2c7-266d3b69ba02
+		summarizeBy: none
+		sourceColumn: Month Name
+		sortByColumn: Month
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Short Name'
+		dataType: string
+		lineageTag: 6c714d4f-2756-41a5-92f2-3394d018f1e8
+		summarizeBy: none
+		sourceColumn: Month Short Name
+		sortByColumn: Month
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week of Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: fb6b2c11-3fb3-4cd5-a688-3f3edb2ca904
+		summarizeBy: sum
+		sourceColumn: Week of Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: int64
+		formatString: 0
+		lineageTag: 004df699-acac-4052-ab3a-8c5b1609498d
+		summarizeBy: sum
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_calendar = m
+		mode: import
+		source =
+				let
+				    Path = Path,
+				    FileName = "dim_calendar.csv",
+				    PathComplete = Path & FileName,
+				    Source = Csv.Document(File.Contents(PathComplete),[Delimiter=",", Columns=9, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}, {"Year", Int64.Type}, {"Quarter", Int64.Type}, {"Quarter (Text)", type text}, {"Month", Int64.Type}, {"Month Name", type text}, {"Month Short Name", type text}, {"Week of Year", Int64.Type}, {"Day", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

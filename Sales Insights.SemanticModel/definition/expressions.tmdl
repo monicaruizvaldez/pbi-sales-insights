@@ -1,0 +1,7 @@
+expression Path = "C:\Users\monic\Documents\Aplicaciones Trabajo\Pruebas Tecnicas\VarGroup Demo\" meta [IsParameterQuery=true, Type="Any", IsParameterQueryRequired=true]
+	lineageTag: b2bc124a-0966-494a-a2cd-85fe60380ebb
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+

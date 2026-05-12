@@ -1,0 +1,43 @@
+table dim_products
+	lineageTag: 416a9173-2acb-401a-a45d-70d3d4716f2c
+
+	column ProductID
+		dataType: string
+		lineageTag: 219a2193-eed9-4903-8c28-e0a70889e7c4
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductName
+		dataType: string
+		lineageTag: 961983c4-36ad-42b5-94e9-48ebfb50a0a6
+		summarizeBy: none
+		sourceColumn: ProductName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 8e8ea63e-fc67-4dbc-8b82-013d87fdf333
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_products = m
+		mode: import
+		source =
+				let
+				    Path = Path,
+				    FileName = "dim_products.csv",
+				    PathComplete = Path & FileName,
+				    Source = Csv.Document(File.Contents(PathComplete),[Delimiter=",", Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+				in
+				    #"Promoted Headers"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

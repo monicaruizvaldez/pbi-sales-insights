@@ -1,0 +1,107 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "555ff4bd63cdc8ab01c2",
+  "displayName": "Sales Details",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "1624e56be0ad3c1d0aa5",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_products"
+              }
+            },
+            "Property": "Category"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "fe364fd44b43069881c7",
+    "type": "Drillthrough",
+    "parameters": [
+      {
+        "name": "edc6af30496b743142e3",
+        "boundFilter": "1624e56be0ad3c1d0aa5",
+        "asAggregation": false,
+        "qnaSingleSelectRequired": false,
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_products"
+              }
+            },
+            "Property": "Category"
+          }
+        }
+      }
+    ]
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Background with filter panel.png'"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "RegisteredResources",
+                    "PackageType": 1,
+                    "ItemName": "Background_with_filter_panel9471280127618334.png"
+                  }
+                }
+              },
+              "scaling": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Fit'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "visualInteractions": [
+    {
+      "source": "0b5b94c5577bada5d1e3",
+      "target": "f95bc0399b93becc87ba",
+      "type": "DataFilter"
+    },
+    {
+      "source": "f95bc0399b93becc87ba",
+      "target": "0b5b94c5577bada5d1e3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "b63e876e8a48b3ac8951",
+      "target": "0b5b94c5577bada5d1e3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "b63e876e8a48b3ac8951",
+      "target": "f95bc0399b93becc87ba",
+      "type": "DataFilter"
+    }
+  ]
+}

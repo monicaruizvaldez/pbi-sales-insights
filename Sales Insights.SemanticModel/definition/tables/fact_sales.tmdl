@@ -1,0 +1,124 @@
+table fact_sales
+	lineageTag: f5cce842-5384-4512-9bf6-44ebfc841583
+
+	column SaleID
+		dataType: string
+		lineageTag: 52dff397-bdee-445b-bd48-17f7259c3ac3
+		summarizeBy: none
+		sourceColumn: SaleID
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: d97b19f9-6ac7-487d-be9a-938812c82b47
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CustomerID
+		dataType: string
+		lineageTag: ac755d1d-1540-4f2e-8de0-5399c9e9aa9e
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductID
+		dataType: string
+		lineageTag: 03bb9b1b-a308-495e-9237-a95a198f8429
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreID
+		dataType: string
+		lineageTag: 3b9eb0c1-880a-4f4b-a28f-a517f7228ecb
+		summarizeBy: none
+		sourceColumn: StoreID
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: a86b656f-c033-48d6-bca1-04e9a0bc131f
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: int64
+		formatString: 0
+		lineageTag: d5438485-00e0-4ea8-b1cd-410880e5425c
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalAmount
+		dataType: int64
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: e412afb0-2ae5-4f99-add3-8c776a39dcc0
+		summarizeBy: sum
+		sourceColumn: TotalAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: e3df9aa9-813c-4483-b2f9-2516d457f149
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cancel Reason'
+		dataType: string
+		lineageTag: 39001c71-5f5a-45d6-a086-21d8522743c4
+		summarizeBy: none
+		sourceColumn: Cancel Reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmployeeID
+		dataType: string
+		lineageTag: 14f2203a-16f8-4868-aa67-5b5e091326c8
+		summarizeBy: none
+		sourceColumn: EmployeeID
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_sales = m
+		mode: import
+		source =
+				let
+				        Path = Path,
+				    FileName = "fact_sales.csv",
+				    PathComplete = Path & FileName,
+				    Source = Csv.Document(File.Contents(PathComplete),[Delimiter=",", Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SaleID", Int64.Type}, {"Date", type date}, {"CustomerID", Int64.Type}, {"ProductID", Int64.Type}, {"StoreID", Int64.Type}, {"Quantity", Int64.Type}, {"UnitPrice", Int64.Type}, {"TotalAmount", Int64.Type}, {"Status", type text}, {"Cancel Reason", type text}, {"EmployeeID", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

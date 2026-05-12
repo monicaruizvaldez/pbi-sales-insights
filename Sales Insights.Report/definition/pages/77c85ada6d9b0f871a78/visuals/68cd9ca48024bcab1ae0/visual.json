@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "68cd9ca48024bcab1ae0",
+  "position": {
+    "x": 224,
+    "y": 105.68832344748736,
+    "z": 6000,
+    "height": 566.31167655251261,
+    "width": 992,
+    "tabOrder": 3000
+  },
+  "visualGroup": {
+    "displayName": "Plantilla 1",
+    "groupMode": "ScaleMode"
+  },
+  "isHidden": true
+}

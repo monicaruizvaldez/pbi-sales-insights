@@ -1,0 +1,46 @@
+table dim_customers
+	lineageTag: 7024bf11-51e1-4758-99e4-24c88b7a899f
+
+	column CustomerID
+		dataType: string
+		lineageTag: d0129fc3-dcea-4d6d-b2e3-9849cb564b58
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerName
+		dataType: string
+		lineageTag: 595a4ef3-966f-4ed8-96a6-5bc2243c147f
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segment
+		dataType: string
+		lineageTag: 3fc71757-68d0-4108-adb2-f5d46806d84f
+		summarizeBy: none
+		sourceColumn: Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_customers = m
+		mode: import
+		source =
+				let
+				    Path = Path,
+				    FileName = "dim_customers.csv",
+				    PathComplete = Path & FileName,
+				    Source = Csv.Document(File.Contents(PathComplete),[Delimiter=",", Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"CustomerID", Int64.Type}, {"CustomerName", type text}, {"Segment", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

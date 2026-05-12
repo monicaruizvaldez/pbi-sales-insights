@@ -1,0 +1,146 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1391.3820560000004,
+            "y": 0
+          },
+          "nodeIndex": "@Measures",
+          "nodeLineageTag": "085124ec-feee-419f-8472-37382c34e58d",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 1036.3631850000002,
+            "y": 0
+          },
+          "nodeIndex": "Products Table",
+          "nodeLineageTag": "63bd2b89-8cbe-4c4b-bfc1-5d96d6b75df5",
+          "size": {
+            "height": 145,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1399.5687664840623,
+            "y": 121.2209688622487
+          },
+          "nodeIndex": "TopN Selected",
+          "nodeLineageTag": "be3ed638-b834-46fa-b565-9c7f15bdf246",
+          "size": {
+            "height": 149.59443799999997,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1400.1190064840621,
+            "y": 296.32499917627342
+          },
+          "nodeIndex": "Parameter Sales (Count/Amount Sold)",
+          "nodeLineageTag": "7e388ea0-51fc-4ef2-94bf-bbe6a8881f26",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "dim_customers",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 694.45191200000011,
+            "y": 0
+          },
+          "nodeIndex": "dim_products",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 415.80217824203089,
+            "y": 405.86918483211917
+          },
+          "nodeIndex": "dim_calendar",
+          "size": {
+            "height": 290.68531699999994,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 343.04732948406178,
+            "y": 0
+          },
+          "nodeIndex": "fact_sales",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 279.06185434041083
+          },
+          "nodeIndex": "dim_employees",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 696.22347300000013,
+            "y": 176.56556164541638
+          },
+          "nodeIndex": "dim_stores",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas las tablas",
+      "zoomValue": 56.447393005377734,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas las tablas",
+  "defaultDiagram": "Todas las tablas"
+}
