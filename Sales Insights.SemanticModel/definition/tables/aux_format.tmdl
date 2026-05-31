@@ -1,0 +1,42 @@
+table aux_format
+	isHidden
+	lineageTag: cc58fdc4-6b73-4a58-b8cb-de940b52625f
+
+	column Format
+		dataType: string
+		isHidden
+		lineageTag: 010aa155-9515-4216-b27b-3a255c97bee9
+		summarizeBy: none
+		sourceColumn: Format
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c3109b18-c4ab-4618-84df-c3ce1f101b23
+		summarizeBy: sum
+		sourceColumn: Order
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition aux_format = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45Wckwqzs8pLUlVcMlMS0stSs1LTlXSUTJQitWJVgpILUpOzStJTEeTNVSKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Format = _t, Order = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Format", type text}, {"Order", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	changedProperty = IsHidden
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

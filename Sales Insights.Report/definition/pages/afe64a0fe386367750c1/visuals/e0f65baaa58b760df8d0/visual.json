@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "e0f65baaa58b760df8d0",
+  "position": {
+    "x": 40.98049024512256,
+    "y": 455.33878050136178,
+    "z": 0,
+    "height": 62.229633335186108,
+    "width": 283.82783984584881,
+    "tabOrder": 1000
+  },
+  "visualGroup": {
+    "displayName": "Signature",
+    "groupMode": "ScaleMode"
+  }
+}

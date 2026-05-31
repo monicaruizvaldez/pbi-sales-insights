@@ -1,0 +1,58 @@
+table dim_status
+	lineageTag: d2ae58e7-4c6b-452d-9a3c-84be5ffd58d8
+
+	column PK_Status
+		dataType: string
+		isHidden
+		isKey
+		lineageTag: c0d41aaf-db59-4237-aacb-94f631e8942f
+		summarizeBy: none
+		sourceColumn: PK_Status
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 1f1dd753-a286-4ead-8b00-81ad75487ae1
+		summarizeBy: none
+		sourceColumn: Status
+		sortByColumn: StatusOrder
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cancel Reason'
+		dataType: string
+		lineageTag: a2f9dc29-64e0-43a1-bef6-b439a2f1f75c
+		summarizeBy: none
+		sourceColumn: Cancel Reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column StatusOrder
+		dataType: string
+		lineageTag: b4dcf91e-8068-49e2-8455-2b77200ff82e
+		summarizeBy: none
+		sourceColumn: StatusOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_status = m
+		mode: import
+		source =
+				let
+				    Path = #"Path",
+				    FileName = "dim_status.csv",
+				    PathComplete = Path & FileName,
+				    Source = Csv.Document(File.Contents(PathComplete),[Delimiter=",", Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+				in
+				    #"Promoted Headers"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

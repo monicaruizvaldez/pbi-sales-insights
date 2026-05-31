@@ -1,0 +1,16 @@
+role 'Filter Seller by User Principal'
+	modelPermission: read
+
+	tablePermission dim_employees =
+			IF(
+			    LOOKUPVALUE(
+			        'dim_employees'[IsManager],
+			        'dim_employees'[Email],
+			        USERPRINCIPALNAME()
+			    ) = 0,
+			    [Email] == USERPRINCIPALNAME(),
+			    TRUE()
+			)
+
+	annotation PBI_Id = 6c3b39119ac941b585f2b93e9c90f3df
+

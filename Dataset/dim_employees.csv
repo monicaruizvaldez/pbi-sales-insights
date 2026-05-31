@@ -1,0 +1,43 @@
+PK_Employee,Employee,Age,JoinDate,Salary,Active,PK_Store,Email,Role,IsManager
+1,Alex Turner,45,2015-03-01,56204,TRUE,1,alex.turner@techcore.com,Store Manager,TRUE
+2,Sam Rivera,48,2016-12-01,46006,TRUE,1,sam.rivera@techcore.com,Senior Seller,FALSE
+3,Jordan Kim,32,2015-06-01,36839,TRUE,1,jordan.kim@techcore.com,Seller,FALSE
+4,Taylor Hayes,46,2021-11-01,40467,TRUE,1,taylor.hayes@techcore.com,Seller,FALSE
+5,Morgan Price,27,2020-04-01,59456,TRUE,2,morgan.price@techcore.com,Store Manager,TRUE
+6,Casey Flores,26,2014-04-01,44767,TRUE,2,casey.flores@techcore.com,Senior Seller,FALSE
+7,Riley Grant,31,2016-06-01,40139,TRUE,2,riley.grant@techcore.com,Seller,FALSE
+8,Jamie Hudson,44,2014-04-01,40597,TRUE,2,jamie.hudson@techcore.com,Seller,FALSE
+9,Avery Banks,31,2021-08-01,61323,TRUE,3,avery.banks@techcore.com,Store Manager,TRUE
+10,Quinn Ellis,47,2019-10-01,47436,TRUE,3,quinn.ellis@techcore.com,Senior Seller,FALSE
+11,Logan Pierce,32,2018-10-01,40827,TRUE,3,logan.pierce@techcore.com,Seller,FALSE
+12,Drew Warren,33,2022-08-01,56053,TRUE,4,drew.warren@techcore.com,Store Manager,TRUE
+13,Peyton Ross,49,2022-08-01,45307,TRUE,4,peyton.ross@techcore.com,Senior Seller,FALSE
+14,Skyler Cole,47,2018-07-01,38787,TRUE,4,skyler.cole@techcore.com,Seller,FALSE
+15,Kendall Stone,33,2015-08-01,57763,TRUE,5,kendall.stone@techcore.com,Store Manager,TRUE
+16,Cameron Hunt,49,2017-08-01,36837,TRUE,5,cameron.hunt@techcore.com,Seller,FALSE
+17,Robin Webb,27,2018-01-01,36792,TRUE,5,robin.webb@techcore.com,Seller,FALSE
+18,Devon Mills,36,2023-01-01,58817,TRUE,6,devon.mills@techcore.com,Store Manager,TRUE
+19,Ashton Nash,44,2016-10-01,36355,TRUE,6,ashton.nash@techcore.com,Seller,FALSE
+20,Emery Carr,48,2018-11-01,40392,TRUE,6,emery.carr@techcore.com,Seller,FALSE
+21,Finley Sharp,28,2023-11-01,59100,TRUE,7,finley.sharp@techcore.com,Store Manager,TRUE
+22,Parker Dunn,27,2019-11-01,38401,TRUE,7,parker.dunn@techcore.com,Seller,FALSE
+23,Reese Holt,51,2020-09-01,41066,TRUE,7,reese.holt@techcore.com,Seller,FALSE
+24,Sawyer Moss,52,2017-11-01,60729,TRUE,8,sawyer.moss@techcore.com,Store Manager,TRUE
+25,Blake Reed,31,2021-07-01,36569,TRUE,8,blake.reed@techcore.com,Seller,FALSE
+26,Elliot Lane,26,2021-01-01,57866,TRUE,9,elliot.lane@techcore.com,Store Manager,TRUE
+27,Harlow Boyd,49,2017-02-01,44653,TRUE,9,harlow.boyd@techcore.com,Senior Seller,FALSE
+28,Indigo Ray,52,2016-06-01,36827,TRUE,9,indigo.ray@techcore.com,Seller,FALSE
+29,Lennon Fox,37,2016-12-01,59714,TRUE,10,lennon.fox@techcore.com,Store Manager,TRUE
+30,Rowan Burns,45,2022-11-01,38988,TRUE,10,rowan.burns@techcore.com,Seller,FALSE
+31,Sage Lyons,30,2017-12-01,38910,TRUE,10,sage.lyons@techcore.com,Seller,FALSE
+32,Sloane Cross,31,2021-02-01,58187,TRUE,11,sloane.cross@techcore.com,Store Manager,TRUE
+33,Tatum Gates,47,2023-12-01,41599,TRUE,11,tatum.gates@techcore.com,Seller,FALSE
+34,Wren Barker,45,2014-10-01,60990,TRUE,12,wren.barker@techcore.com,Store Manager,TRUE
+35,Zion Watts,45,2015-10-01,40375,TRUE,12,zion.watts@techcore.com,Seller,FALSE
+36,Aiden Cole,48,2016-08-01,57338,TRUE,13,aiden.cole@techcore.com,Store Manager,TRUE
+37,Briar Quinn,39,2018-01-01,46211,TRUE,13,briar.quinn@techcore.com,Senior Seller,FALSE
+38,Caden Fox,45,2021-05-01,40562,TRUE,13,caden.fox@techcore.com,Seller,FALSE
+39,Dana Swift,32,2021-04-01,58656,TRUE,14,dana.swift@techcore.com,Store Manager,TRUE
+40,Eden Walsh,51,2022-03-01,36458,TRUE,14,eden.walsh@techcore.com,Seller,FALSE
+41,Frankie Long,32,2022-10-01,56262,TRUE,15,frankie.long@techcore.com,Store Manager,TRUE
+42,Gray Powers,50,2017-05-01,39286,TRUE,15,gray.powers@techcore.com,Seller,FALSE

@@ -1,0 +1,128 @@
+table fact_sales
+	lineageTag: f5cce842-5384-4512-9bf6-44ebfc841583
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: a86b656f-c033-48d6-bca1-04e9a0bc131f
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: decimal
+		formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+		lineageTag: d5438485-00e0-4ea8-b1cd-410880e5425c
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-MX"}
+
+	column TotalAmount
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: e412afb0-2ae5-4f99-add3-8c776a39dcc0
+		summarizeBy: sum
+		sourceColumn: TotalAmount
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column FK_Sale
+		dataType: string
+		isHidden
+		lineageTag: 1502ea2c-37ee-43df-aaa6-92979ac5c9b3
+		summarizeBy: none
+		sourceColumn: FK_Sale
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FK_Customer
+		dataType: string
+		isHidden
+		lineageTag: f49287e3-9376-42a6-893c-fde9c9565af4
+		summarizeBy: none
+		sourceColumn: FK_Customer
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FK_Product
+		dataType: string
+		isHidden
+		lineageTag: 63c581cd-f788-4c8f-8b41-a89fc50f57e4
+		summarizeBy: none
+		sourceColumn: FK_Product
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FK_Store
+		dataType: string
+		isHidden
+		lineageTag: 45270272-c784-4c27-8fdd-dabd69655fcf
+		summarizeBy: none
+		sourceColumn: FK_Store
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FK_Employee
+		dataType: string
+		isHidden
+		lineageTag: 05f9952f-a798-4b6a-bc45-374b0bc9bfce
+		summarizeBy: none
+		sourceColumn: FK_Employee
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column FK_Status
+		dataType: string
+		isHidden
+		lineageTag: f9dd3775-6908-471e-a7f8-fb5303efb8c6
+		summarizeBy: none
+		sourceColumn: FK_Status
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column TransactionDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1598150f-369c-4437-996e-3f7f29a00386
+		summarizeBy: none
+		sourceColumn: TransactionDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition fact_sales = m
+		mode: import
+		source =
+				let
+				        Path = Path,
+				    FileName = "fact_sales.csv",
+				    PathComplete = Path & FileName,
+				    Source = Csv.Document(File.Contents(PathComplete),[Delimiter=",", Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"UnitPrice", Currency.Type}, {"TotalAmount", Currency.Type}, {"Quantity", Int64.Type}, {"TransactionDate", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

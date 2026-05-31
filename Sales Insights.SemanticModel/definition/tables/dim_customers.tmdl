@@ -1,0 +1,47 @@
+table dim_customers
+	lineageTag: 7024bf11-51e1-4758-99e4-24c88b7a899f
+
+	column Segment
+		dataType: string
+		lineageTag: 3fc71757-68d0-4108-adb2-f5d46806d84f
+		summarizeBy: none
+		sourceColumn: Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column PK_Customer
+		dataType: string
+		isHidden
+		isKey
+		lineageTag: c0a828db-36d3-447d-8073-32e90041fd0f
+		summarizeBy: none
+		sourceColumn: PK_Customer
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer
+		dataType: string
+		lineageTag: 1167f55c-d291-4789-9228-5ea2d61b4960
+		summarizeBy: none
+		sourceColumn: Customer
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_customers = m
+		mode: import
+		source =
+				let
+				    Path = Path,
+				    FileName = "dim_customers.csv",
+				    PathComplete = Path & FileName,
+				    Source = Csv.Document(File.Contents(PathComplete),[Delimiter=",", Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+				in
+				    #"Promoted Headers"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+
