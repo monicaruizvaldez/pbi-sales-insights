@@ -1,0 +1,36 @@
+model Model
+	culture: es-MX
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: es-MX
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["@Measures","dim_customers","dim_products","dim_calendar","fact_sales","dim_employees","dim_stores","Path","dim_status","aux_format"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode","MCP-PBIModeling"]
+
+annotation __TEdtr = 1
+
+ref table @Measures
+ref table aux_products
+ref table aux_topN
+ref table dim_customers
+ref table dim_products
+ref table dim_calendar
+ref table 'Parameter Sales'
+ref table fact_sales
+ref table dim_employees
+ref table dim_stores
+ref table dim_status
+ref table aux_format
+
+ref role 'Filter Seller by User Principal'
+ref role 'Filter Seller by Sales Region'
+
+ref cultureInfo es-MX
+ref cultureInfo en-US
+

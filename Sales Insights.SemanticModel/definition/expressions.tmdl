@@ -1,0 +1,11 @@
+expression Path =
+		let
+		    Path     = "C:\Users\monic\Repositorio GitHub\pbi-sales-insights\Dataset\"
+		in
+		    Path
+	lineageTag: b2bc124a-0966-494a-a2cd-85fe60380ebb
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+

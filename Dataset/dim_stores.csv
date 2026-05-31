@@ -1,0 +1,16 @@
+PK_Store,Store,Location,City,State,Country,Lat,Long
+1,TechCore New York,New York,New York,New York,USA,40.7128,-74.006
+2,TechCore Los Angeles,Los Angeles,Los Angeles,California,USA,34.0522,-118.2437
+3,TechCore Chicago,Chicago,Chicago,Illinois,USA,41.8781,-87.6298
+4,TechCore Houston,Houston,Houston,Texas,USA,29.7604,-95.3698
+5,TechCore Miami,Miami,Miami,Florida,USA,25.7617,-80.1918
+6,TechCore Seattle,Seattle,Seattle,Washington,USA,47.6062,-122.3321
+7,TechCore Atlanta,Atlanta,Atlanta,Georgia,USA,33.749,-84.388
+8,TechCore Denver,Denver,Denver,Colorado,USA,39.7392,-104.9903
+9,TechCore Toronto,Toronto,Toronto,Ontario,Canada,43.6532,-79.3832
+10,TechCore Vancouver,Vancouver,Vancouver,British Columbia,Canada,49.2827,-123.1207
+11,TechCore Montreal,Montreal,Montreal,Quebec,Canada,45.5017,-73.5673
+12,TechCore Calgary,Calgary,Calgary,Alberta,Canada,51.0447,-114.0719
+13,TechCore Mexico City,Mexico City,Mexico City,CDMX,Mexico,19.4326,-99.1332
+14,TechCore Guadalajara,Guadalajara,Guadalajara,Jalisco,Mexico,20.6597,-103.3496
+15,TechCore Monterrey,Monterrey,Monterrey,Nuevo Leon,Mexico,25.6866,-100.3161

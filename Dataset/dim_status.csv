@@ -1,0 +1,5 @@
+PK_Status,Status,Cancel Reason,StatusOrder
+1,Canceled,Customer changed mind,1
+2,Canceled,Out of Stock,1
+3,Canceled,Payment not received,1
+4,Completed,,0

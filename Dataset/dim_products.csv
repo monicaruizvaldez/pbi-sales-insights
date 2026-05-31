@@ -1,0 +1,21 @@
+PK_Product,Product,Category
+1,Business Laptop,Technology
+2,Wireless Router,Technology
+3,External Hard Drive,Technology
+4,Noise-Canceling Headset,Technology
+5,USB Flash Drive,Technology
+6,HDMI Cable,Technology
+7,Mechanical Keyboard,Technology
+8,Wireless Mouse,Technology
+9,4K Webcam,Technology
+10,Portable Charger,Technology
+11,Ergonomic Office Chair,Office Furniture
+12,Height-Adjustable Desk,Office Furniture
+13,Monitor Stand,Office Furniture
+14,Filing Cabinet,Office Furniture
+15,LED Desk Lamp,Office Furniture
+16,Laser Printer Paper,Office Supplies
+17,Desk Organizer Set,Office Supplies
+18,Whiteboard Markers Set,Office Supplies
+19,Planner & Notebook Set,Office Supplies
+20,Stapler & Accessories Kit,Office Supplies

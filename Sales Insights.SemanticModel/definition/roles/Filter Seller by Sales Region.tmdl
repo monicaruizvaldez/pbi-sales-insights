@@ -1,0 +1,27 @@
+role 'Filter Seller by Sales Region'
+	modelPermission: read
+
+	tablePermission fact_sales =
+			VAR IsManager =
+			    LOOKUPVALUE(
+			        'dim_employees'[IsManager],
+			        'dim_employees'[Email],
+			        USERPRINCIPALNAME()
+			    )
+			
+			VAR UserCity =
+			    LOOKUPVALUE(
+			        'dim_employees'[PK_Store],
+			        'dim_employees'[Email],
+			        USERPRINCIPALNAME()
+			    )
+			
+			RETURN
+			IF(
+			    IsManager = 1,
+			    TRUE(),
+			    fact_sales[FK_Store] = UserCity
+			)
+
+	annotation PBI_Id = a5cceb1b66d84fcebf1074ec91da0821
+
