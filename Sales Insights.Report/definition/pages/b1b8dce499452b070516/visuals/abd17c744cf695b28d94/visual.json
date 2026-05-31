@@ -1,16 +1,16 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "abd17c744cf695b28d94",
   "position": {
-    "x": 0,
-    "y": 0.66019217122421936,
-    "z": 0,
+    "x": 225.39130434782606,
+    "y": 467.6601921712242,
+    "z": 2000,
     "height": 204.33980782877572,
     "width": 621.91304347826087,
-    "tabOrder": 0
+    "tabOrder": 1000
   },
   "visual": {
-    "visualType": "map",
+    "visualType": "azureMap",
     "query": {
       "queryState": {
         "Series": {
@@ -23,11 +23,11 @@
                       "Entity": "dim_stores"
                     }
                   },
-                  "Property": "City"
+                  "Property": "Location"
                 }
               },
-              "queryRef": "Dim Stores.City",
-              "nativeQueryRef": "City"
+              "queryRef": "dim_stores.Location",
+              "nativeQueryRef": "Location"
             }
           ]
         },
@@ -41,11 +41,44 @@
                       "Entity": "@Measures"
                     }
                   },
-                  "Property": "($) Sales Amount"
+                  "Property": "Sales Amount"
                 }
               },
               "queryRef": "@Measures.Total Sales",
-              "nativeQueryRef": "Total Sales"
+              "nativeQueryRef": "Sales Amount",
+              "displayName": "Sales Amount"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "@Measures"
+                    }
+                  },
+                  "Property": "Orders"
+                }
+              },
+              "queryRef": "@Measures.Orders",
+              "nativeQueryRef": "Orders"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "@Measures"
+                    }
+                  },
+                  "Property": "Cancel Rate"
+                }
+              },
+              "queryRef": "@Measures.Cancel Rate",
+              "nativeQueryRef": "Cancel Rate"
             }
           ]
         },
@@ -120,39 +153,7 @@
       ],
       "dataPoint": [
         {
-          "properties": {
-            "fillRule": {
-              "linearGradient2": {
-                "min": {
-                  "color": {
-                    "expr": {
-                      "Literal": {
-                        "Value": "'minColor'"
-                      }
-                    }
-                  }
-                },
-                "max": {
-                  "color": {
-                    "expr": {
-                      "Literal": {
-                        "Value": "'maxColor'"
-                      }
-                    }
-                  }
-                },
-                "nullColoringStrategy": {
-                  "strategy": {
-                    "expr": {
-                      "Literal": {
-                        "Value": "'asZero'"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
+          "properties": {}
         },
         {
           "properties": {},
@@ -173,7 +174,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#B3B3B3'"
+                      "Value": "'#2976FF'"
                     }
                   }
                 }
@@ -193,12 +194,12 @@
                             "Entity": "dim_stores"
                           }
                         },
-                        "Property": "Region"
+                        "Property": "Location"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Milan'"
+                        "Value": "'New York'"
                       }
                     }
                   }
@@ -214,7 +215,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#0F63F4'"
+                      "Value": "'#E85C2D'"
                     }
                   }
                 }
@@ -234,12 +235,545 @@
                             "Entity": "dim_stores"
                           }
                         },
-                        "Property": "Region"
+                        "Property": "Location"
                       }
                     },
                     "Right": {
                       "Literal": {
-                        "Value": "'Turin'"
+                        "Value": "'Los Angeles'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#20C997'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "dim_stores"
+                          }
+                        },
+                        "Property": "Location"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Chicago'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FCC419'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "dim_stores"
+                          }
+                        },
+                        "Property": "Location"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Houston'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#9775FA'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "dim_stores"
+                          }
+                        },
+                        "Property": "Location"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Miami'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#339AF0'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "dim_stores"
+                          }
+                        },
+                        "Property": "Location"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Seattle'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#51CF66'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "dim_stores"
+                          }
+                        },
+                        "Property": "Location"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Atlanta'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7C8BA1'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "dim_stores"
+                          }
+                        },
+                        "Property": "Location"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Denver'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F03E3E'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "dim_stores"
+                          }
+                        },
+                        "Property": "Location"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Toronto'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#48CAE4'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "dim_stores"
+                          }
+                        },
+                        "Property": "Location"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Vancouver'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#CC5DE8'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "dim_stores"
+                          }
+                        },
+                        "Property": "Location"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Montreal'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FF922B'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "dim_stores"
+                          }
+                        },
+                        "Property": "Location"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Calgary'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#192A44'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "dim_stores"
+                          }
+                        },
+                        "Property": "Location"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Mexico City'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#74C0FC'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "dim_stores"
+                          }
+                        },
+                        "Property": "Location"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Guadalajara'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#38D9A9'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "dim_stores"
+                          }
+                        },
+                        "Property": "Location"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Monterrey'"
                       }
                     }
                   }
@@ -249,33 +783,130 @@
           }
         }
       ],
-      "mapStyles": [
+      "categoryLabels": [
         {
           "properties": {
-            "mapTheme": {
+            "show": {
               "expr": {
                 "Literal": {
-                  "Value": "'grayscale'"
+                  "Value": "false"
                 }
               }
             }
           }
         }
       ],
-      "bubbles": [
+      "mapControls": [
         {
           "properties": {
-            "bubbleSize": {
+            "defaultStyle": {
               "expr": {
                 "Literal": {
-                  "Value": "5L"
+                  "Value": "'grayscale_light'"
+                }
+              }
+            },
+            "showStylePicker": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "showNavigationControls": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "showSelectionControl": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "zoom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.96D"
+                }
+              }
+            },
+            "centerLatitude": {
+              "expr": {
+                "Literal": {
+                  "Value": "36.845328189586425D"
+                }
+              }
+            },
+            "centerLongitude": {
+              "expr": {
+                "Literal": {
+                  "Value": "-98.344D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "bubbleLayer": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "bubbleRadius": {
+              "expr": {
+                "Literal": {
+                  "Value": "7L"
+                }
+              }
+            },
+            "minBubbleRadius": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
+                }
+              }
+            },
+            "maxRadius": {
+              "expr": {
+                "Literal": {
+                  "Value": "10L"
                 }
               }
             },
             "markerRangeType": {
               "expr": {
                 "Literal": {
-                  "Value": "'auto'"
+                  "Value": "'dataRange'"
+                }
+              }
+            },
+            "bubbleStrokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "1L"
+                }
+              }
+            },
+            "autoStrokeColor": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "layerPosition": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
                 }
               }
             }
@@ -290,7 +921,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Stores'"
+                  "Value": "'Sales Amount by City'"
                 }
               }
             },
@@ -399,9 +1030,33 @@
             }
           }
         }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "themedBackground": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.1
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "parentGroupName": "4341520eefdeecbbfd46"
+  }
 }

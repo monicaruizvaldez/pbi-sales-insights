@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "5b1097bb3a61500e054b",
   "position": {
     "x": 870.26086956521738,
     "y": 240,
-    "z": 875,
+    "z": 7000,
     "height": 204.52173913043478,
     "width": 346.43478260869563,
-    "tabOrder": 3000
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "donutChart",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dim_products"
+                      "Entity": "dim_stores"
                     }
                   },
-                  "Property": "Category"
+                  "Property": "Country"
                 }
               },
-              "queryRef": "Dim Products.Category",
-              "nativeQueryRef": "Category",
+              "queryRef": "dim_stores.Country",
+              "nativeQueryRef": "Country",
               "active": true
             }
           ]
@@ -42,7 +42,7 @@
                       "Entity": "@Measures"
                     }
                   },
-                  "Property": "($) Sales Amount"
+                  "Property": "Sales Amount"
                 }
               },
               "queryRef": "@Measures.Total Sales",
@@ -61,7 +61,7 @@
                     "Entity": "@Measures"
                   }
                 },
-                "Property": "($) Sales Amount"
+                "Property": "Sales Amount"
               }
             },
             "direction": "Descending"
@@ -151,6 +151,176 @@
             }
           }
         }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "dim_products"
+                          }
+                        },
+                        "Property": "Category"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Furniture'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "dim_stores"
+                          }
+                        },
+                        "Property": "Country"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'USA'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "dim_stores"
+                          }
+                        },
+                        "Property": "Country"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Canada'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "dim_stores"
+                          }
+                        },
+                        "Property": "Country"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Mexico'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -160,7 +330,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Sales by Category'"
+                  "Value": "'Sales by Country'"
                 }
               }
             },
@@ -257,6 +427,31 @@
               "expr": {
                 "Literal": {
                   "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "themedBackground": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.1
+                    }
+                  }
                 }
               }
             }

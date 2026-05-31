@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.2.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
   "themeCollection": {
     "baseTheme": {
       "name": "CY24SU10",
@@ -77,11 +77,6 @@
         {
           "name": "Cover_Background42932199464896836.png",
           "path": "Cover_Background42932199464896836.png",
-          "type": "Image"
-        },
-        {
-          "name": "DEMO_Logo7337297041067111.png",
-          "path": "DEMO_Logo7337297041067111.png",
           "type": "Image"
         },
         {

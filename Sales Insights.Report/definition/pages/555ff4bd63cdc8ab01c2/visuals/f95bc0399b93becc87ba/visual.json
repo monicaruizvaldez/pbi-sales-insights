@@ -1,12 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "f95bc0399b93becc87ba",
   "position": {
-    "x": 0,
-    "y": 102.89962825278809,
+    "x": 848.94601542416456,
+    "y": 358.66323907455012,
     "z": 1000,
-    "height": 102.89962825278809,
-    "width": 343.79182156133828
+    "height": 95.424164524421585,
+    "width": 365.24421593830334,
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "hundredPercentStackedBarChart",
@@ -19,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dim_stores"
+                      "Entity": "dim_products"
                     }
                   },
-                  "Property": "City"
+                  "Property": "Category"
                 }
               },
-              "queryRef": "Dim Stores.City",
-              "nativeQueryRef": "City"
+              "queryRef": "dim_products.Category",
+              "nativeQueryRef": "Category"
             }
           ]
         },
@@ -40,12 +41,12 @@
                       "Entity": "@Measures"
                     }
                   },
-                  "Property": "($) Sales Amount"
+                  "Property": "Sales Amount"
                 }
               },
-              "queryRef": "@Measures.($) Sales Amount",
-              "nativeQueryRef": "Total Sales Amount",
-              "displayName": "Total Sales Amount"
+              "queryRef": "@Measures.Sales Amount",
+              "nativeQueryRef": "Current Year",
+              "displayName": "Current Year"
             }
           ],
           "fieldParameters": [
@@ -54,10 +55,10 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Parameter Sales (Count/Amount Sold)"
+                      "Entity": "Parameter Sales"
                     }
                   },
-                  "Property": "Parameter Sales (Count/Amount Sold)"
+                  "Property": "Parameter Sales"
                 }
               },
               "index": 0,
@@ -76,7 +77,7 @@
                     "Entity": "@Measures"
                   }
                 },
-                "Property": "($) Sales Amount"
+                "Property": "Sales Amount"
               }
             },
             "direction": "Descending"
@@ -248,6 +249,174 @@
               }
             ]
           }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "dim_stores"
+                          }
+                        },
+                        "Property": "Location"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Palermo'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0.4
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "dim_stores"
+                          }
+                        },
+                        "Property": "Location"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Roma'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 7,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "dim_stores"
+                          }
+                        },
+                        "Property": "Location"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Monterrey'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "dim_products"
+                          }
+                        },
+                        "Property": "Category"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Office Supplies'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
         }
       ]
     },
@@ -258,7 +427,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Region'"
+                  "Value": "'Category'"
                 }
               }
             },
@@ -357,9 +526,123 @@
             }
           }
         }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "themedBackground": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.1
+                    }
+                  }
+                }
+              }
+            },
+            "showActionsInTooltips": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "0a82bed4a7690715e0db"
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f30e494f04c6cfac7af4",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Parameter Sales"
+              }
+            },
+            "Property": "Parameter Sales Fields"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "p",
+              "Entity": "Parameter Sales",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "p"
+                          }
+                        },
+                        "Property": "Parameter Sales Fields"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'''@Measures''[Sales Amount]'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'''@Measures''[Orders]'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "2a3bb8c2c9e26f731225",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_stores"
+              }
+            },
+            "Property": "Location"
+          }
+        },
+        "type": "TopN",
+        "howCreated": "User"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
 }

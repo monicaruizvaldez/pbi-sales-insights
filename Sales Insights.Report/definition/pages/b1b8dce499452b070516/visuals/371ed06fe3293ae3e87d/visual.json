@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "371ed06fe3293ae3e87d",
   "position": {
-    "x": 16.695652173913043,
-    "y": 242.08695652173913,
-    "z": 10000,
-    "height": 68.8695652173913,
-    "width": 175.30434782608694,
-    "tabOrder": 5000
+    "x": 17,
+    "y": 447.74018299420226,
+    "z": 11000,
+    "height": 69.967845659163984,
+    "width": 181.09324758842442,
+    "tabOrder": 9000
   },
   "visual": {
     "visualType": "slicer",
@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fact_sales"
+                      "Entity": "dim_status"
                     }
                   },
                   "Property": "Status"
                 }
               },
-              "queryRef": "Sales.Status",
+              "queryRef": "dim_status.Status",
               "nativeQueryRef": "Status",
               "active": true
             }
@@ -54,17 +54,17 @@
       "general": [
         {
           "properties": {
-            "orientation": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
-                }
-              }
-            },
             "selfFilterEnabled": {
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "orientation": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }
@@ -80,13 +80,6 @@
                   "Value": "false"
                 }
               }
-            },
-            "selectAllCheckboxEnabled": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
             }
           }
         }
@@ -94,6 +87,20 @@
       "header": [
         {
           "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
             "fontColor": {
               "solid": {
                 "color": {
@@ -102,20 +109,6 @@
                       "Value": "'#103b68'"
                     }
                   }
-                }
-              }
-            },
-            "textSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
                 }
               }
             }
@@ -136,80 +129,89 @@
                   }
                 }
               }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
             }
           }
         }
       ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "syncGroup": {
+      "groupName": "Status",
+      "fieldChanges": true,
+      "filterChanges": true
     },
     "drillFilterOtherVisuals": true
   },
   "filterConfig": {
     "filters": [
       {
-        "name": "0d24d59f6cdd0fa24c3f",
+        "name": "7ef230e3ed95d2602f21",
         "ordinal": 0,
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Calendar"
+                "Entity": "dim_status"
               }
             },
-            "Property": "Year"
+            "Property": "Status"
           }
         },
-        "type": "Advanced",
-        "howCreated": "User"
-      },
-      {
-        "name": "cbc8800ce8ab92a8be6e",
-        "ordinal": 1,
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "@Measures"
-              }
-            },
-            "Property": "Has Data (Calendar-Sales)"
-          }
-        },
-        "type": "Advanced",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "@",
-              "Entity": "@Measures",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Comparison": {
-                  "ComparisonKind": 0,
-                  "Left": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Source": "@"
-                        }
-                      },
-                      "Property": "Has Data (Calendar-Sales)"
-                    }
-                  },
-                  "Right": {
-                    "Literal": {
-                      "Value": "1L"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        },
-        "howCreated": "User"
+        "type": "Categorical"
       }
     ],
     "filterSortOrder": "Custom"

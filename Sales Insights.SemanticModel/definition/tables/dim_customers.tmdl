@@ -1,29 +1,31 @@
 table dim_customers
 	lineageTag: 7024bf11-51e1-4758-99e4-24c88b7a899f
 
-	column CustomerID
-		dataType: string
-		lineageTag: d0129fc3-dcea-4d6d-b2e3-9849cb564b58
-		summarizeBy: none
-		sourceColumn: CustomerID
-
-		changedProperty = DataType
-
-		annotation SummarizationSetBy = Automatic
-
-	column CustomerName
-		dataType: string
-		lineageTag: 595a4ef3-966f-4ed8-96a6-5bc2243c147f
-		summarizeBy: none
-		sourceColumn: CustomerName
-
-		annotation SummarizationSetBy = Automatic
-
 	column Segment
 		dataType: string
 		lineageTag: 3fc71757-68d0-4108-adb2-f5d46806d84f
 		summarizeBy: none
 		sourceColumn: Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column PK_Customer
+		dataType: string
+		isHidden
+		isKey
+		lineageTag: c0a828db-36d3-447d-8073-32e90041fd0f
+		summarizeBy: none
+		sourceColumn: PK_Customer
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer
+		dataType: string
+		lineageTag: 1167f55c-d291-4789-9228-5ea2d61b4960
+		summarizeBy: none
+		sourceColumn: Customer
 
 		annotation SummarizationSetBy = Automatic
 
@@ -35,10 +37,9 @@ table dim_customers
 				    FileName = "dim_customers.csv",
 				    PathComplete = Path & FileName,
 				    Source = Csv.Document(File.Contents(PathComplete),[Delimiter=",", Encoding=1252, QuoteStyle=QuoteStyle.None]),
-				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
-				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"CustomerID", Int64.Type}, {"CustomerName", type text}, {"Segment", type text}})
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
 				in
-				    #"Changed Type"
+				    #"Promoted Headers"
 
 	annotation PBI_ResultType = Table
 

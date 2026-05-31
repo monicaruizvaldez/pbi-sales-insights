@@ -11,7 +11,7 @@ role 'Filter Seller by Sales Region'
 			
 			VAR UserCity =
 			    LOOKUPVALUE(
-			        'dim_employees'[StoreID],
+			        'dim_employees'[PK_Store],
 			        'dim_employees'[Email],
 			        USERPRINCIPALNAME()
 			    )
@@ -20,7 +20,7 @@ role 'Filter Seller by Sales Region'
 			IF(
 			    IsManager = 1,
 			    TRUE(),
-			    fact_sales[StoreID] = UserCity
+			    fact_sales[FK_Store] = UserCity
 			)
 
 	annotation PBI_Id = a5cceb1b66d84fcebf1074ec91da0821

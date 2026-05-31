@@ -1,0 +1,72 @@
+table 'Parameter Sales'
+	isHidden
+	lineageTag: 7e388ea0-51fc-4ef2-94bf-bbe6a8881f26
+
+	column 'Parameter Sales'
+		isHidden
+		lineageTag: 4ee85e1d-172c-4b9f-9756-4d3f625815ab
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Sales Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Sales Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Sales Fields'
+		isHidden
+		lineageTag: 0e554238-01ed-4f3a-938b-6a731424722a
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Sales Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Sales Order'
+		isHidden
+		formatString: 0
+		lineageTag: a0b9f84e-bb84-4a11-9683-9483fdcbef48
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MeasureName
+		isHidden
+		lineageTag: 583bbd96-1f69-4813-b0c7-5082eb4096a9
+		summarizeBy: none
+		sourceColumn: [Value4]
+		sortByColumn: MeasureOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column MeasureOrder
+		isHidden
+		formatString: 0
+		lineageTag: 12e14b67-3345-4425-a3dd-3a76e7d3cee5
+		summarizeBy: sum
+		sourceColumn: [Value5]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Parameter Sales' = calculated
+		mode: import
+		source =
+				{
+				    ("Last Year", NAMEOF('@Measures'[LY | Sales Amount]), 0, "Sales Amount",0),
+				    ("Current Year", NAMEOF('@Measures'[Sales Amount]), 1, "Sales Amount",0),
+				    ("Dif.", NAMEOF('@Measures'[UI | Format Sales Amount]), 2, "Sales Amount",0),
+				    ("Last Year", NAMEOF('@Measures'[LY | Orders]), 3, "Orders",1),
+				    ("Current Year", NAMEOF('@Measures'[Orders]), 4, "Orders",1),
+				    ("Dif.", NAMEOF('@Measures'[UI | Format Orders]), 5, "Orders",1)
+				}
+
+	annotation PBI_Id = 696ab9387e8a435fbfb744cb99b89eb2
+

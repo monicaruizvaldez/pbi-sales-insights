@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "b63e876e8a48b3ac8951",
   "position": {
-    "x": 225.70048309178745,
-    "y": 240.12882447665055,
-    "z": 1000,
-    "height": 205.08856682769726,
-    "width": 414.29951690821252,
-    "tabOrder": 4000
+    "x": 225.94687232219366,
+    "y": 265.43273350471293,
+    "z": 3000,
+    "height": 189.751499571551,
+    "width": 365.24421593830334,
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "lineChart",
@@ -42,12 +42,12 @@
                       "Entity": "@Measures"
                     }
                   },
-                  "Property": "Param. Total Sales/Count Sales (Selected Year)"
+                  "Property": "LY | Sales Amount"
                 }
               },
-              "queryRef": "@Measures.Param. Total Sales/Count Sales (Selected Year)",
-              "nativeQueryRef": "Selected Year                 ",
-              "displayName": "Selected Year                 "
+              "queryRef": "@Measures.LY | Sales Amount",
+              "nativeQueryRef": "Last Year",
+              "displayName": "Last Year"
             },
             {
               "field": {
@@ -57,12 +57,28 @@
                       "Entity": "@Measures"
                     }
                   },
-                  "Property": "Param. Total Sales/Count Sales (Previous Year)"
+                  "Property": "Sales Amount"
                 }
               },
-              "queryRef": "@Measures.Param. Total Sales/Count Sales (Previous Year)",
-              "nativeQueryRef": "Previous Year",
-              "displayName": "Previous Year"
+              "queryRef": "@Measures.Sales Amount",
+              "nativeQueryRef": "Current Year",
+              "displayName": "Current Year"
+            }
+          ],
+          "fieldParameters": [
+            {
+              "parameterExpr": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Parameter Sales"
+                    }
+                  },
+                  "Property": "Parameter Sales"
+                }
+              },
+              "index": 0,
+              "length": 2
             }
           ]
         }
@@ -135,13 +151,6 @@
                 }
               }
             },
-            "start": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
-                }
-              }
-            },
             "fontSize": {
               "expr": {
                 "Literal": {
@@ -169,64 +178,45 @@
       "legend": [
         {
           "properties": {
-            "labelColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "@Measures"
-                        }
-                      },
-                      "Property": "Color: Transparent"
-                    }
-                  }
+            "legendMarkerRendering": {
+              "expr": {
+                "Literal": {
+                  "Value": "'markerCircleDefault'"
+                }
+              }
+            },
+            "matchLineColor": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
-          }
-        }
-      ],
-      "dataPoint": [
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#21A7E0'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "@Measures.Param. Total Sales/Count Sales (Previous Year)"
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#0F63F4'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "@Measures.Param. Total Sales/Count Sales (Selected Year)"
           }
         }
       ],
       "lineStyles": [
+        {
+          "properties": {
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "3D"
+                }
+              }
+            },
+            "lineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'dashed'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "@Measures.LY | Orders"
+          }
+        },
         {
           "properties": {
             "lineStyle": {
@@ -238,7 +228,85 @@
             }
           },
           "selector": {
-            "metadata": "@Measures.Param. Total Sales/Count Sales (Previous Year)"
+            "metadata": "@Measures.LY | Sales Amount"
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 4,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "@Measures.LY | Orders"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 4,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "@Measures.LY | Sales Amount"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "@Measures.Orders"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "@Measures.Sales Amount"
           }
         }
       ]
@@ -256,18 +324,8 @@
             },
             "text": {
               "expr": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Parameter Sales (Count/Amount Sold)"
-                        }
-                      },
-                      "Property": "Parameter Sales (Count/Amount Sold)"
-                    }
-                  },
-                  "Function": 3
+                "Literal": {
+                  "Value": "'Monthly Trend Analysis'"
                 }
               }
             },
@@ -275,6 +333,20 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
                 }
               }
             }
@@ -320,7 +392,7 @@
             "verticalSpacing": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "0D"
                 }
               }
             }
@@ -346,8 +418,149 @@
             }
           }
         }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "5D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "showActionsInTooltips": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "themedBackground": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.1
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "81c6b1f48d41a88c8da7",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Parameter Sales"
+              }
+            },
+            "Property": "Parameter Sales Fields"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "p",
+              "Entity": "Parameter Sales",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "p"
+                          }
+                        },
+                        "Property": "Parameter Sales Fields"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'''@Measures''[LY | Sales Amount]'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'''@Measures''[Sales Amount]'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'''@Measures''[LY | Orders]'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'''@Measures''[Orders]'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "7b48052e7bf83f8f618e",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_calendar"
+              }
+            },
+            "Property": "Month Short Name"
+          }
+        },
+        "type": "Categorical"
+      }
+    ],
+    "filterSortOrder": "Custom"
   }
 }

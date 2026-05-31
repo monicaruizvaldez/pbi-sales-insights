@@ -1,30 +1,6 @@
 table dim_stores
 	lineageTag: 93c7ef66-47d7-410a-8149-55ccca940722
 
-	column StoreID
-		dataType: string
-		lineageTag: bdfd41ee-f18b-4a5f-8a85-ab72cd82be95
-		summarizeBy: none
-		sourceColumn: StoreID
-
-		annotation SummarizationSetBy = Automatic
-
-	column StoreName
-		dataType: string
-		lineageTag: db6b06a1-4ae2-46d6-b79e-2724d888ad5b
-		summarizeBy: none
-		sourceColumn: StoreName
-
-		annotation SummarizationSetBy = Automatic
-
-	column City
-		dataType: string
-		lineageTag: 4e426408-2997-4eae-b677-ba9701e55970
-		summarizeBy: none
-		sourceColumn: City
-
-		annotation SummarizationSetBy = Automatic
-
 	column Lat
 		dataType: string
 		lineageTag: 61a5e44a-0d3e-41e0-b746-41b5889fc13a
@@ -40,6 +16,58 @@ table dim_stores
 		dataCategory: Longitude
 		summarizeBy: none
 		sourceColumn: Long
+
+		annotation SummarizationSetBy = Automatic
+
+	column Location
+		dataType: string
+		lineageTag: 8a2cbbe4-ba78-440a-9f52-1b85f6e48865
+		summarizeBy: none
+		sourceColumn: Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column PK_Store
+		dataType: string
+		isHidden
+		isKey
+		lineageTag: e84a2c8c-8c53-44e5-abcb-73e15ac72a1f
+		summarizeBy: none
+		sourceColumn: PK_Store
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Store
+		dataType: string
+		lineageTag: 37760dd1-6c3d-4c50-9bbc-0065ebecaf8a
+		summarizeBy: none
+		sourceColumn: Store
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 89690a2f-d2f3-45a1-b68e-dd12f9dc9f29
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 64f69804-cbe0-41d8-b461-84b26e3cf380
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 5ed44341-bb93-485f-9013-e0fc138e6e85
+		summarizeBy: none
+		sourceColumn: Country
 
 		annotation SummarizationSetBy = Automatic
 

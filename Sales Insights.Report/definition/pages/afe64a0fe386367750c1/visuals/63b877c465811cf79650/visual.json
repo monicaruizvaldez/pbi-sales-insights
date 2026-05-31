@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "63b877c465811cf79650",
   "position": {
-    "x": 181.91358408455082,
-    "y": 552.90270438296545,
+    "x": 0,
+    "y": 0,
     "z": 2000,
-    "height": 70.187130867267641,
-    "width": 597.30680758470623,
-    "tabOrder": 2000
+    "height": 70.409026798307465,
+    "width": 454.95063469675597,
+    "tabOrder": 0
   },
   "visual": {
     "visualType": "pageNavigator",
@@ -18,7 +18,7 @@
             "showPage": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }
@@ -32,7 +32,7 @@
             "showPage": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }
@@ -46,7 +46,7 @@
             "showHiddenPages": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }
@@ -97,7 +97,7 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 4,
+                      "ColorId": 2,
                       "Percent": 0
                     }
                   }
@@ -140,6 +140,44 @@
           "selector": {
             "id": "selected"
           }
+        },
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 6,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "press"
+          }
+        },
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 4,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "hover"
+          }
         }
       ],
       "layout": [
@@ -148,7 +186,7 @@
             "cellPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "30L"
+                  "Value": "20L"
                 }
               }
             }
@@ -173,8 +211,9 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#103b68'"
+                    "ThemeDataColor": {
+                      "ColorId": 6,
+                      "Percent": 0
                     }
                   }
                 }
@@ -183,6 +222,43 @@
           },
           "selector": {
             "id": "selected"
+          }
+        },
+        {
+          "properties": {
+            "fillColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EEF4FF'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "hover"
+          }
+        },
+        {
+          "properties": {
+            "fillColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 6,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "press"
           }
         }
       ],
@@ -222,10 +298,50 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }
+          }
+        },
+        {
+          "properties": {
+            "shadowBlur": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "75D"
+                }
+              }
+            },
+            "shadowPositionPreset": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
           }
         }
       ]
@@ -396,5 +512,6 @@
     },
     "drillFilterOtherVisuals": true
   },
+  "parentGroupName": "8a8814650acc85754bd5",
   "howCreated": "InsertVisualButton"
 }

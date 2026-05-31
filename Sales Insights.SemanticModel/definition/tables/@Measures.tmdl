@@ -1,70 +1,50 @@
 table @Measures
 	lineageTag: 085124ec-feee-419f-8472-37382c34e58d
 
-	measure 'Has Data (Calendar-Sales)' =
-			
-			
-			IF(
-			    COUNTROWS(fact_sales) > 0,
-			    1,
-			    0
-			)
-		formatString: 0
-		displayFolder: Aux\Has Data
-		lineageTag: 0de67326-7998-422c-8e30-25ca8b4f6353
-
-	measure '($) Sales Amount' =
+	measure 'Sales Amount' =
 			
 			
 			SUM(fact_sales[TotalAmount])
-		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
-		displayFolder: Sales\Amount
+		formatString: \$#,0.0;(\$#,0.0);\$#,0.0
+		displayFolder: KPIs\Main
 		lineageTag: 45b3b7bc-54ba-457f-8546-21fdc223b032
 
-	measure '_N Value' =
-			
-			3
-		formatString: #,0
-		displayFolder: TopN
-		lineageTag: 30509306-682c-424c-9b3a-5977e05c1e73
-
-	measure 'Top N Sales' = ```
+	measure 'Top N Sales' =
 			
 			
-			VAR _N = 'TopN Selected'[TopN Selected Value]
-			VAR _CurrentProd = SELECTEDVALUE('Products Table'[ProductName])
-			VAR _TopN = 
+			VAR _N = 'aux_topN'[TopN Selected Value]
+			VAR _CurrentProd = SELECTEDVALUE('aux_products'[Product])
+			VAR _TopN =
 			    TOPN(
 			        _N,
-			        ALLSELECTED('Products Table'),
-			        [($) Sales Amount]
+			        ALLSELECTED('aux_products'),
+			        [Sales Amount]
 			    )
 			
 			VAR _TopSales =
 			    CALCULATE(
-			        [($) Sales Amount],
+			        [Sales Amount],
 			        KEEPFILTERS(_TopN)
 			    )
 			
 			VAR _OtherSales =
 			CALCULATE(
-			    [($) Sales Amount],
-			    ALLSELECTED('Products Table'[ProductName])
+			    [Sales Amount],
+			    ALLSELECTED('aux_products'[Product])
 			) -
 			CALCULATE(
-			    [($) Sales Amount],
+			    [Sales Amount],
 			    _TopN
 			)
-			       
+			
 			RETURN
 			IF(
 			    _CurrentProd <> "Others",
 			    _TopSales,
 			    _OtherSales
 			)
-			```
-		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
-		displayFolder: TopN
+		formatString: \$#,0.0;(\$#,0.0);\$#,0.0
+		displayFolder: Format
 		lineageTag: 59f75a37-0db9-433e-b30b-19291a911e7f
 
 	measure Rank =
@@ -74,245 +54,368 @@ table @Measures
 			    [Top N Sales] <> BLANK(),
 			    RANKX(
 			        TOPN(
-			            'TopN Selected'[TopN Selected Value],
-			            ALLSELECTED('Products Table'),
-			            [($) Sales Amount]
+			            'aux_topN'[TopN Selected Value],
+			            ALLSELECTED('aux_products'),
+			            [Sales Amount]
 			        ),
-			    [($) Sales Amount],
+			    [Sales Amount],
 			    ,
 			    DESC,
 			    Dense
 			    )
 			)
 		formatString: #,0
-		displayFolder: TopN
+		displayFolder: Format
 		lineageTag: 95e60702-391c-4406-be57-48bd67accc18
 
-	measure '($) Cumulative Sales Amount PY' =
+	measure 'LY | Cumulative Sales Amount' =
 			
 			
 			CALCULATE(
-			    [($) Sales Amount],
+			    [Sales Amount],
 			    DATESYTD(SAMEPERIODLASTYEAR('dim_calendar'[Date]))
 			)
-		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
-		displayFolder: Sales\Amount
+		formatString: \$#,0.0;(\$#,0.0);\$#,0.0
+		displayFolder: KPIs\Time Intelligence\LY
 		lineageTag: c8fed628-7b27-410d-96d9-91c4923d9475
 
-	measure '($) Cumulative Sales Amount' =
+	measure 'Cumulative Sales Amount' =
 			
 			
 			CALCULATE(
-			    [($) Sales Amount],
+			    [Sales Amount],
 			    DATESYTD('dim_calendar'[Date]),
-			    'dim_calendar'[Date] <= MAX(fact_sales[Date])
+			    'dim_calendar'[Date] <= MAX(fact_sales[TransactionDate])
 			)
-		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
-		displayFolder: Sales\Amount
+		formatString: \$#,0.0;(\$#,0.0);\$#,0.0
+		displayFolder: KPIs\Main
 		lineageTag: c7a1ff65-7286-4525-bd12-a1486d70ac7e
-
-	measure 'Color: Transparent' =
-			
-			
-			"#FFFFFF00"
-		displayFolder: Aux\Color
-		lineageTag: 9975583e-7500-4a06-809c-d8f90b582db1
 
 	measure 'Card: Top N Products' =
 			
 			
-			"Top " & 'TopN Selected'[TopN Selected Value] & " Products"
-		displayFolder: Aux\Cards/Titles
+			"Top " & 'aux_topN'[TopN Selected Value] & " Products"
+		displayFolder: Format
 		lineageTag: 84133b36-84b1-4373-a256-2b2ffeafc8d5
 
-	measure 'Card: Total Selected Year' =
-			
-			
-			"Total " & SELECTEDVALUE('dim_calendar'[Year])
-		displayFolder: Aux\Cards/Titles
-		lineageTag: 776b3943-cb18-4108-8068-1cf23b1e8407
-
-	measure 'Card: Total Previous Year' =
-			
-			
-			"Total " & SELECTEDVALUE('dim_calendar'[Year])-1
-		displayFolder: Aux\Cards/Titles
-		lineageTag: 39b4972c-f707-483f-9b60-d746716cf35f
-
-	measure 'Graph Title: Cumulative Sales' =
-			
-			
-			"Cumulative Sales
-			
-			 "
-		displayFolder: Aux\Cards/Titles
-		lineageTag: 3b9ee586-2703-49e9-9c01-35667d9b039b
-
-	measure '(#) Orders' =
-			
-			
-			DISTINCTCOUNT(fact_sales[SaleID])
+	measure Orders = DISTINCTCOUNT(fact_sales[FK_Sale])
 		formatString: #,0
-		displayFolder: Sales\Count
+		displayFolder: KPIs\Main
 		lineageTag: 14dae302-6fc6-42bb-bc64-1a2e7eff29f4
 
-	measure '(#) Orders Cumulative' =
+	measure 'Detail Other (%)' =
 			
 			
-			CALCULATE(
-			    [(#) Orders],
-			    'dim_calendar'[Date] < MAX('fact_sales'[Date])
-			)
-		formatString: #,0
-		displayFolder: Sales\Count
-		lineageTag: af3ac5cd-1326-4465-99b0-7cbeb2492c4c
-
-	measure '(#) Orders Cumulative PY' =
-			
-			
-			VAR _PrevYear = SELECTEDVALUE('dim_calendar'[Year]) - 1
-			
-			RETURN
-			CALCULATE(
-			    [(#) Orders Cumulative],
-			    YEAR(fact_sales[Date]) = _PrevYear,
-			    REMOVEFILTERS('dim_calendar'[Year])
-			)
-		formatString: 0
-		displayFolder: Sales\Count
-		lineageTag: 554b0fc9-2549-47b1-88c5-e9cb92490419
-
-	measure 'Count Sales Cumulative' =
-			
-			
-			CALCULATE(
-			    [(#) Orders Cumulative],
-			    YEAR(fact_sales[Date]) = SELECTEDVALUE('dim_calendar'[Year])
-			)
-		formatString: 0
-		displayFolder: Sales\Count
-		lineageTag: 8c4857bd-dc98-4e3c-a8fa-aedf4227a749
-
-	measure 'Card: Selected Category' =
-			
-			
-			SELECTEDVALUE('dim_products'[Category])
-		displayFolder: Aux\Cards/Titles
-		lineageTag: 865816e7-7b82-4f77-a343-f6e152ca53e7
-
-	measure 'Card: Selected Category (Title)' =
-			
-			
-			"Category"
-		displayFolder: Aux\Cards/Titles
-		lineageTag: edacc21a-a1b8-4430-9a4e-07b4d5b58028
-
-	measure 'Param. Total Sales/Count Sales (Previous Year)' = ```
-			
-			
-			VAR _PrevYear = SELECTEDVALUE('dim_calendar'[Year]) - 1
-			
-			RETURN
-			CALCULATE(
-			    IF(
-			        SELECTEDVALUE('Parameter Sales (Count/Amount Sold)'[Parameter Sales (Count/Amount Sold) Order]) = 0, 
-			        [($) Sales Amount],
-			        [(#) Orders]
-			    ),
-			    YEAR(fact_sales[Date]) = _PrevYear,
-			    REMOVEFILTERS('dim_calendar'[Year]),
-			    REMOVEFILTERS(fact_sales[Date])
-			)
-			```
-		formatString: #,0
-		displayFolder: Sales\Parameter
-		lineageTag: 08236dbc-8cba-4c6c-84e4-3e5d440fe0d7
-
-	measure 'Param. Total Sales/Count Sales (Selected Year)' = ```
-			
-			
-			VAR _Year = SELECTEDVALUE('dim_calendar'[Year])
-			
-			RETURN
-			CALCULATE(
-			    IF(
-			        SELECTEDVALUE('Parameter Sales (Count/Amount Sold)'[Parameter Sales (Count/Amount Sold) Order]) = 0, 
-			        [($) Sales Amount],
-			        [(#) Orders]
-			    ),
-			    YEAR(fact_sales[Date]) = _Year
-			)
-			```
-		formatString: #,0
-		displayFolder: Sales\Parameter
-		lineageTag: 058588dd-a323-42a7-a322-9360846b85ab
-
-	measure 'Detail Other (%)' = ```
-			
-			
-			VAR _N = 'TopN Selected'[TopN Selected Value]
-			VAR _TopN = 
+			VAR _N = 'aux_topN'[TopN Selected Value]
+			VAR _TopN =
 			    TOPN(
 			        _N,
-			        ALLSELECTED('Products Table'),
-			        [($) Sales Amount]
+			        ALLSELECTED('aux_products'),
+			        [Sales Amount]
 			    )
 			
 			VAR _OtherSales =
 			CALCULATE(
-			    [($) Sales Amount],
-			    ALLSELECTED('Products Table'[ProductName])
+			    [Sales Amount],
+			    ALLSELECTED('aux_products'[Product])
 			) -
 			CALCULATE(
-			    [($) Sales Amount],
+			    [Sales Amount],
 			    _TopN
 			)
 			
 			RETURN
 			IF(
-			    SELECTEDVALUE('Products Table'[ProductName]) = "Others",
+			    SELECTEDVALUE('aux_products'[Product]) = "Others",
 			    DIVIDE(
 			        _OtherSales,
 			        CALCULATE(
-			            [($) Sales Amount],
-			            ALLSELECTED('Products Table'[ProductName])
+			            [Sales Amount],
+			            ALLSELECTED('aux_products'[Product])
 			        )
 			    ),
 			    BLANK()
 			)
-			```
 		formatString: 0.00%;-0.00%;0.00%
-		displayFolder: TopN
+		displayFolder: Format
 		lineageTag: 93f0600a-977c-49e6-887a-5dcaa40f821a
 
-	measure 'Graph Max: Top N Products' = ```
+	measure 'Graph Max: Top N Products' =
 			
 			
-			VAR _N = 'TopN Selected'[TopN Selected Value]
-			VAR _TopN = 
+			VAR _N = 'aux_topN'[TopN Selected Value]
+			VAR _TopN =
 			    TOPN(
 			        _N,
-			        ALLSELECTED('Products Table'),
-			        [($) Sales Amount]
+			        ALLSELECTED('aux_products'),
+			        [Sales Amount]
 			    )
 			
 			VAR _OtherSales =
 			CALCULATE(
-			    [($) Sales Amount],
-			    ALLSELECTED('Products Table'[ProductName])
+			    [Sales Amount],
+			    ALLSELECTED('aux_products'[Product])
 			) -
 			CALCULATE(
-			    [($) Sales Amount],
+			    [Sales Amount],
 			    _TopN
 			)
 			
 			RETURN
 			_OtherSales * 1.2
-			```
-		displayFolder: Aux\Settings
+		formatString: \$#,0.0;(\$#,0.0);\$#,0.0
+		displayFolder: Format
 		lineageTag: 4d53ecf0-8ef6-498b-8dc1-133b8ac19294
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+	measure 'Average Order Value' =
+			
+			[Sales Amount] / [Orders]
+		formatString: \$#,0.0;(\$#,0.0);\$#,0.0
+		displayFolder: KPIs\Main
+		lineageTag: 7d052469-1a07-4b9f-b1b4-822aa306d67d
+
+	measure 'Cancel Rate' =
+			
+			DIVIDE(
+			    [Canceled Orders],
+			    [Orders]
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: KPIs\Main
+		lineageTag: f0f59314-e764-4a3c-9577-0b6b1214e367
+
+	measure 'Canceled Orders' =
+			
+			CALCULATE(
+			    [Orders],
+			    dim_status[Status] = "Canceled"
+			)
+		formatString: #,0
+		displayFolder: KPIs\Main
+		lineageTag: d99666f4-b62a-493c-97e7-5b6fc8bd1f31
+
+	measure 'Units Sold' = SUM(fact_sales[Quantity])
+		formatString: #,0
+		displayFolder: KPIs\Main
+		lineageTag: 2df3281a-6221-4d08-a007-08e88b24da50
+
+	measure 'LY | Sales Amount' =
+			CALCULATE(
+			    [Sales Amount],
+			    SAMEPERIODLASTYEAR(dim_calendar[Date])
+			)
+		formatString: \$#,0.0;(\$#,0.0);\$#,0.0
+		displayFolder: KPIs\Time Intelligence\LY
+		lineageTag: 45089f23-e804-4f6e-9315-4b6e9d2a6aae
+
+	measure 'YoY % | Sales Amount' =
+			
+			
+			VAR CurrentValue = [Sales Amount]
+			VAR PreviousValue = [LY | Sales Amount]
+			
+			RETURN
+			DIVIDE(
+			    CurrentValue - PreviousValue,
+			    PreviousValue
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: KPIs\Time Intelligence\YoY %
+		lineageTag: ef73286f-21f5-429c-95c9-f4abe9b66eb7
+
+	measure 'LY | Orders' =
+			CALCULATE(
+			    [Orders],
+			    SAMEPERIODLASTYEAR(dim_calendar[Date])
+			)
+		formatString: #,0
+		displayFolder: KPIs\Time Intelligence\LY
+		lineageTag: dbb24607-3fc2-4970-9e70-75278691d4c6
+
+	measure 'LY | Cancel Rate' =
+			CALCULATE(
+			    [Cancel Rate],
+			    SAMEPERIODLASTYEAR(dim_calendar[Date])
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: KPIs\Time Intelligence\LY
+		lineageTag: 4d399e31-c785-4c7d-95a5-1e59e8ba7d24
+
+	measure 'LY | Units Sold' =
+			CALCULATE(
+			    [Units Sold],
+			    SAMEPERIODLASTYEAR(dim_calendar[Date])
+			)
+		formatString: #,0
+		displayFolder: KPIs\Time Intelligence\LY
+		lineageTag: d52e8741-7b9c-474e-9545-324e8cc76ceb
+
+	measure 'LY | Average Order Value' =
+			CALCULATE(
+			    [Average Order Value],
+			    SAMEPERIODLASTYEAR(dim_calendar[Date])
+			)
+		formatString: \$#,0.0;(\$#,0.0);\$#,0.0
+		displayFolder: KPIs\Time Intelligence\LY
+		lineageTag: e5abfd9b-8c13-42f8-af9a-51e350eaa99b
+
+	measure 'YoY % | Orders' =
+			
+			
+			VAR CurrentValue = [Orders]
+			VAR PreviousValue = [LY | Orders]
+			
+			RETURN
+			DIVIDE(
+			    CurrentValue - PreviousValue,
+			    PreviousValue
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: KPIs\Time Intelligence\YoY %
+		lineageTag: bf99c9b9-fe3d-49f9-9098-ae3ebd57aef7
+
+	measure 'YoY % | Average Order Value' =
+			
+			
+			VAR CurrentValue = [Average Order Value]
+			VAR PreviousValue = [LY | Average Order Value]
+			
+			RETURN
+			DIVIDE(
+			    CurrentValue - PreviousValue,
+			    PreviousValue
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: KPIs\Time Intelligence\YoY %
+		lineageTag: a6313d00-4fcb-476e-bd15-e0c2d844e12b
+
+	measure 'YoY % | Units Sold' =
+			
+			
+			VAR CurrentValue = [Units Sold]
+			VAR PreviousValue = [LY | Units Sold]
+			
+			RETURN
+			DIVIDE(
+			    CurrentValue - PreviousValue,
+			    PreviousValue
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: KPIs\Time Intelligence\YoY %
+		lineageTag: 39beb80c-c7c1-4a5b-a683-207529149047
+
+	measure 'YoY % | Cancel Rate' =
+			
+			
+			VAR CurrentValue = [Cancel Rate]
+			VAR PreviousValue = [LY | Cancel Rate]
+			
+			RETURN
+			CurrentValue - PreviousValue
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: KPIs\Time Intelligence\YoY %
+		lineageTag: f63ba760-bb39-4db2-8765-a1f6cefc340f
+
+	measure 'YoY # | Sales Amount' =
+			
+			
+			VAR CurrentValue = [Sales Amount]
+			VAR PreviousValue = [LY | Sales Amount]
+			
+			RETURN
+			CurrentValue - PreviousValue
+		formatString: #,0.0
+		displayFolder: KPIs\Time Intelligence\YoY #
+		lineageTag: 2ce17c83-4f24-4c54-bd52-111ef7a2b37d
+
+	measure 'YoY # | Orders' =
+			
+			
+			VAR CurrentValue = [Orders]
+			VAR PreviousValue = [LY | Orders]
+			
+			RETURN
+			CurrentValue - PreviousValue
+		formatString: #,0
+		displayFolder: KPIs\Time Intelligence\YoY #
+		lineageTag: 5558c4fe-001e-4556-b4d8-a312be9562e5
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'YoY # | Average Order Value' =
+			
+			
+			VAR CurrentValue = [Average Order Value]
+			VAR PreviousValue = [LY | Average Order Value]
+			
+			RETURN
+			CurrentValue - PreviousValue
+		formatString: #,0.0
+		displayFolder: KPIs\Time Intelligence\YoY #
+		lineageTag: 19bc2e7d-2227-4bca-85cc-5d0d03c221b6
+
+	measure 'YoY # | Units Sold' =
+			
+			
+			VAR CurrentValue = [Units Sold]
+			VAR PreviousValue = [LY | Units Sold]
+			
+			RETURN
+			CurrentValue - PreviousValue
+		formatString: #,0
+		displayFolder: KPIs\Time Intelligence\YoY #
+		lineageTag: 50899e4b-171d-4e01-90b1-617d20b2ba8b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'UI | Format Orders' =
+			
+			VAR _Format = SELECTEDVALUE(aux_format[Order])
+			RETURN
+			SWITCH(
+			    _Format,
+			    0, FORMAT([YoY # | Orders], "+#,0;-#,0;0"),
+			    1, FORMAT([YoY % | Orders], "+0.0%;-0.0%;0.0%")
+			)
+		displayFolder: Format
+		lineageTag: ef523e69-ffc1-496e-99c7-303d2da4644e
+
+	measure 'UI | Format Sales Amount' =
+			
+			VAR _Format = SELECTEDVALUE(aux_format[Order])
+			RETURN
+			SWITCH(
+			    _Format,
+			    0, FORMAT([YoY # | Sales Amount], "+$#,0.0;-$#,0.0;$0.0"),
+			    1, FORMAT([YoY % | Sales Amount], "+0.0%;-0.0%;0.0%")
+			)
+		displayFolder: Format
+		lineageTag: b7ccea52-68b5-4d5c-b9a0-80df9924fb4c
+
+	measure 'UI | Color Top N Products' =
+			
+			IF(
+			    SELECTEDVALUE(aux_products[Product]) <> "Others",
+			    "#0F63F4",
+			    "#B3B3B3"
+			)
+		displayFolder: Format
+		lineageTag: 8080857a-1451-41e0-84aa-20df6ee2b2e0
+
+	measure 'YoY % | Cumulative Sales Amount' =
+			
+			
+			VAR CurrentValue = [Cumulative Sales Amount]
+			VAR PreviousValue = [LY | Cumulative Sales Amount]
+			
+			RETURN
+			DIVIDE(
+			    CurrentValue - PreviousValue,
+			    PreviousValue
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: KPIs\Time Intelligence\YoY %
+		lineageTag: d1d40621-8739-4f79-9f41-ab8b0be9139d
 
 	partition @Measures = m
 		mode: import

@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "ea282f34900821653c1e",
   "position": {
-    "x": 113.73913043478262,
-    "y": 0,
-    "z": 2000,
+    "x": 984,
+    "y": 467,
+    "z": 6000,
     "height": 25,
     "width": 25,
-    "tabOrder": 2000
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "actionButton",
@@ -62,7 +62,7 @@
             "tooltip": {
               "expr": {
                 "Literal": {
-                  "Value": "'Top N Products by Sales'"
+                  "Value": "'Top N Products by Sales Amount'"
                 }
               }
             }
@@ -72,6 +72,5 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "7cd5f5a80e3f9a499d9d",
   "howCreated": "InsertVisualButton"
 }

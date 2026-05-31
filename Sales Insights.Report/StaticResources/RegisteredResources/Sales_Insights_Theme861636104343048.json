@@ -561,6 +561,11 @@
           {
             "show": true
           }
+        ],
+        "visualHeader": [
+          {
+            "show": false
+          }
         ]
       }
     },
@@ -574,6 +579,15 @@
               }
             },
             "transparency": 0
+          }
+        ]
+      }
+    },
+    "slicer": {
+      "*": {
+        "items": [
+          {
+            "textSize": 10
           }
         ]
       }

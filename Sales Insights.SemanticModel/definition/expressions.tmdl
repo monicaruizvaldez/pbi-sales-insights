@@ -1,4 +1,8 @@
-expression Path = "C:\Users\monic\Documents\Aplicaciones Trabajo\Pruebas Tecnicas\VarGroup Demo\" meta [IsParameterQuery=true, Type="Any", IsParameterQueryRequired=true]
+expression Path =
+		let
+		    Path     = "C:\Users\monic\Repositorio GitHub\pbi-sales-insights\Dataset\"
+		in
+		    Path
 	lineageTag: b2bc124a-0966-494a-a2cd-85fe60380ebb
 
 	annotation PBI_NavigationStepName = Navigation

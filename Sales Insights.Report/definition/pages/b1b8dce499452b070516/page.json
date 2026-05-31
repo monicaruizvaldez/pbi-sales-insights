@@ -60,12 +60,8 @@
       }
     ]
   },
+  "visibility": "HiddenInViewMode",
   "visualInteractions": [
-    {
-      "source": "c38926e75ab6232259b6",
-      "target": "5b1097bb3a61500e054b",
-      "type": "NoFilter"
-    },
     {
       "source": "5b1097bb3a61500e054b",
       "target": "cd500700d23cda1628d1",

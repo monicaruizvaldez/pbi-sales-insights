@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "ce1be6dbef9f8277d92a",
   "position": {
     "x": 226.085429342031,
     "y": 25.691526061594431,
-    "z": 9000,
+    "z": 6000,
     "height": 77.074578184783292,
     "width": 916.33109619686809,
-    "tabOrder": 8002
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "textbox",
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": " Sales Overview",
+                    "value": " Sales Detail",
                     "textStyle": {
                       "fontWeight": "bold",
                       "fontFamily": "Arial",

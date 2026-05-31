@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "e9c8483d06229c004397",
   "position": {
-    "x": 40.98049024512256,
-    "y": 69.818613010208807,
+    "x": 41.674876847290641,
+    "y": 70.049261083743843,
     "z": 1000,
-    "height": 385.52016749115296,
-    "width": 901.57078539269628,
+    "height": 320.98522167487687,
+    "width": 680.09852216748766,
     "tabOrder": 0
   },
   "visual": {
@@ -38,32 +38,6 @@
                       "fontFamily": "Arial",
                       "fontSize": "96pt",
                       "color": "#1f5eff"
-                    }
-                  }
-                ]
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": ""
-                  }
-                ]
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": ""
-                  }
-                ]
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": "Turning data into insights that drive business growth.",
-                    "textStyle": {
-                      "fontFamily": "Arial",
-                      "fontSize": "18pt",
-                      "color": "#446388"
                     }
                   }
                 ]

@@ -1,0 +1,24 @@
+table aux_products
+	isHidden
+	lineageTag: 63bd2b89-8cbe-4c4b-bfc1-5d96d6b75df5
+
+	column Product
+		lineageTag: 968166a7-1dfc-49b9-985f-7e58b70ac583
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: dim_products[Product]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition aux_products = calculated
+		mode: import
+		source =
+				
+				
+				UNION(
+				    DISTINCT('dim_products'[Product]),
+				    DATATABLE("Product", STRING, {{"Others"}})
+				)
+
+	annotation PBI_Id = 569e1377ba214f2a8684be83c0a2ca03
+

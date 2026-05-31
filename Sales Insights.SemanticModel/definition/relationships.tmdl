@@ -1,31 +1,30 @@
-relationship AutoDetected_1d5c1d11-5894-4ada-8982-226c15c7e7c9
-	fromColumn: fact_sales.CustomerID
-	toColumn: dim_customers.CustomerID
+relationship AutoDetected_5be55858-c2a5-4a64-a532-4a0f23817309
+	fromColumn: fact_sales.FK_Customer
+	toColumn: dim_customers.PK_Customer
 
-relationship AutoDetected_745bd67a-d2b8-4ec7-a1bc-ba85613f3746
-	fromColumn: fact_sales.ProductID
-	toColumn: dim_products.ProductID
+relationship AutoDetected_c4a09ef5-febf-45c8-9c52-17ceacc35f05
+	fromColumn: fact_sales.FK_Store
+	toColumn: dim_stores.PK_Store
 
-relationship e3284bbd-46db-9e2a-28bb-ff477700981e
-	fromColumn: fact_sales.Date
-	toColumn: dim_calendar.Date
+relationship d5e26a24-5dc4-e42a-af2b-8801c5b5b7b1
+	fromColumn: fact_sales.FK_Employee
+	toColumn: dim_employees.PK_Employee
 
-relationship 0cdba9a0-61ce-e068-2926-0dd4b177da0a
-	fromColumn: fact_sales.EmployeeID
-	toColumn: dim_employees.EmployeeID
+relationship AutoDetected_fb914346-c6a2-4a45-b085-abace890c3dc
+	fromColumn: fact_sales.FK_Product
+	toColumn: dim_products.PK_Product
 
-relationship 10568cc6-3822-b2c1-0be4-1e0ab335ec3f
-	fromColumn: fact_sales.StoreID
-	toColumn: dim_stores.StoreID
-
-relationship 31f1175a-e5ae-4dba-b1c6-9ac4f521a8b0
-	joinOnDateBehavior: datePartOnly
-	fromColumn: dim_employees.JoinDate
-	toColumn: LocalDateTable_2371134f-a299-47cf-a4d8-62bc9088ac8d.Date
-
-relationship d616305e-6f45-bd14-91e9-193c907e6653
+relationship 8d13289f-eb14-bb0a-7637-a00126718c5f
 	crossFilteringBehavior: bothDirections
 	fromCardinality: one
-	fromColumn: 'Products Table'.ProductName
-	toColumn: dim_products.ProductName
+	fromColumn: aux_products.Product
+	toColumn: dim_products.Product
+
+relationship AutoDetected_29bf41d1-194d-4041-8600-401284ee405c
+	fromColumn: fact_sales.FK_Status
+	toColumn: dim_status.PK_Status
+
+relationship 42f97885-3007-ba90-0d35-b93b15470928
+	fromColumn: fact_sales.TransactionDate
+	toColumn: dim_calendar.Date
 

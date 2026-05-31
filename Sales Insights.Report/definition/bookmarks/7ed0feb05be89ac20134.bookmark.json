@@ -209,7 +209,7 @@
                           "Entity": "@Measures"
                         }
                       },
-                      "Property": "($) Cumulative Sales Amount PY"
+                      "Property": "LY | Cumulative Sales Amount"
                     }
                   },
                   "howCreated": 0
@@ -224,7 +224,7 @@
                           "Entity": "@Measures"
                         }
                       },
-                      "Property": "($) Cumulative Sales Amount"
+                      "Property": "Cumulative Sales Amount"
                     }
                   },
                   "howCreated": 0
@@ -331,7 +331,7 @@
                           "Entity": "@Measures"
                         }
                       },
-                      "Property": "($) Sales Amount"
+                      "Property": "Sales Amount"
                     }
                   },
                   "howCreated": 0
@@ -366,7 +366,7 @@
                           "Entity": "@Measures"
                         }
                       },
-                      "Property": "($) Sales Amount"
+                      "Property": "Sales Amount"
                     }
                   }
                 }
@@ -381,145 +381,6 @@
                         }
                       },
                       "Property": "Category"
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          "c38926e75ab6232259b6": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "0d24d59f6cdd0fa24c3f",
-                  "type": "Advanced",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Calendar"
-                        }
-                      },
-                      "Property": "Year"
-                    }
-                  },
-                  "howCreated": 1
-                },
-                {
-                  "name": "cbc8800ce8ab92a8be6e",
-                  "type": "Advanced",
-                  "filter": {
-                    "Version": 2,
-                    "From": [
-                      {
-                        "Name": "@",
-                        "Entity": "@Measures",
-                        "Type": 0
-                      }
-                    ],
-                    "Where": [
-                      {
-                        "Condition": {
-                          "Comparison": {
-                            "ComparisonKind": 0,
-                            "Left": {
-                              "Measure": {
-                                "Expression": {
-                                  "SourceRef": {
-                                    "Source": "@"
-                                  }
-                                },
-                                "Property": "Has Data (Calendar-Sales)"
-                              }
-                            },
-                            "Right": {
-                              "Literal": {
-                                "Value": "1L"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    ]
-                  },
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "@Measures"
-                        }
-                      },
-                      "Property": "Has Data (Calendar-Sales)"
-                    }
-                  },
-                  "howCreated": 1
-                },
-                {
-                  "name": "e00511354509b4fb68fa",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "dim_products"
-                        }
-                      },
-                      "Property": "ProductName"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "slicer",
-              "objects": {
-                "merge": {
-                  "data": [
-                    {
-                      "properties": {
-                        "mode": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "'Dropdown'"
-                            }
-                          }
-                        },
-                        "isInvertedSelectionMode": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "true"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ],
-                  "selection": [
-                    {
-                      "properties": {
-                        "strictSingleSelect": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "false"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              "activeProjections": {
-                "Values": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "dim_products"
-                        }
-                      },
-                      "Property": "ProductName"
                     }
                   }
                 ]
@@ -569,7 +430,7 @@
                           "Entity": "@Measures"
                         }
                       },
-                      "Property": "($) Sales Amount"
+                      "Property": "Sales Amount"
                     }
                   },
                   "howCreated": 0
@@ -606,7 +467,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Products Table"
+                          "Entity": "aux_products"
                         }
                       },
                       "Property": "ProductName"
@@ -670,7 +531,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "Products Table"
+                          "Entity": "aux_products"
                         }
                       },
                       "Property": "ProductName"
@@ -690,7 +551,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "TopN Selected"
+                          "Entity": "aux_topN"
                         }
                       },
                       "Property": "TopN Selected"
@@ -713,7 +574,7 @@
                             "From": [
                               {
                                 "Name": "t",
-                                "Entity": "TopN Selected",
+                                "Entity": "aux_topN",
                                 "Type": 0
                               }
                             ],
@@ -785,7 +646,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "TopN Selected"
+                          "Entity": "aux_topN"
                         }
                       },
                       "Property": "TopN Selected"
